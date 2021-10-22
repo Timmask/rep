@@ -1,0 +1,19 @@
+{% extends 'blog/index.html' %}
+{% load static %}
+
+  
+    
+  {% block content %}
+  <div class="leftcolumn" style="width: 100%; height: 500px;">
+    <div class="card">
+        <h2>{{part.name}}</h2>
+        <img src="{{ part.img.url }}" style="justify-content: center; width:300px; margin-top: 20px; float: left;" alt="">
+        <div style="float: right;">
+            <p>price: {{part.price}}</p>
+            <p>{{part.parameters|linebreaksbr}}</p>
+        </div>
+        
+    </div>
+     </div>
+     {% endblock%}
+ 

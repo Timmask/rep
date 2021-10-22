@@ -1,0 +1,37 @@
+{% extend 'blog/index.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    <div class="rightcolumn" style="margin-top: 25px;">
+        <div class="card" id="about">
+            <form action="">
+                <p><b>Filters</b></p>
+                <p><input type="radio" name="answer" value="a1">Value1<Br>
+                <input type="radio" name="answer" value="a2">Value2 <Br>
+                <input type="radio" name="answer" value="a3">Value 3</p>
+                <label for="bikes">Choise sorting method</label>
+                <select id="bikes" name="bikes">
+                    <option value="By price">By price</option>
+                    <option value="By model">By model</option>
+                    <option value="By country">By country</option>
+                </select>
+                <p><input type="submit"></p>
+            </form>
+        </div>
+    </div>
+ 
+    <div class="container">
+      {% for part in parts %}
+        <div>
+            <a href="{% url 'bike_detail' pk=bike.pk %}"><img src="{{ bike.img.url }}" style="justify-content: center; width: 300px; margin-top: 20px; " alt=""></a>
+            <p>{{part.name}}</p>
+            <p>{{part.price}}</p>
+            
+        </div>
+        {% endfor %}
+        
+    </div>
+
+    {% endblock%}

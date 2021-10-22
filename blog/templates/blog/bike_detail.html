@@ -1,0 +1,21 @@
+{% extends 'blog/index.html' %}
+{% load static %}
+
+  
+    
+  {% block content %}
+
+
+  <div class="leftcolumn" style="width: 100%;">
+    <div class="card">
+        <h2>{{bike.name}}</h2>
+        <img src="{{ bike.img.url }}" style="justify-content: center; width:100%; margin-top: 20px; " alt="">
+      
+        <p>price: {{bike.price}}</p>
+        <p>{{bike.description|linebreaksbr}}</p>
+    </div>
+     </div>
+
+     
+     {% endblock%}
+ 

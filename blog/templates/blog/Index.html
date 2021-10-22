@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike site</title>
+    <link rel="icon" href="{% static 'css/img/log.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="{% static 'http://fonts.cdnfonts.com/css/aquatico' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <style>
+
+
+    .container1 {
+        justify-content: left;
+        width: 75%;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 20px;
+        color: 	#080E73;
+        border:solid 1px #7277D8 ;
+        justify-content: stretch;
+    }
+    
+    .container1 > div {
+      background-color: #ffffff;
+      width: 400px;
+      height: 400px;
+      margin: 10px;
+      text-align: center;
+      line-height: 75px;
+      font-size: 20px;
+      border-radius: 20px;
+    }
+    .container1 > div:hover {
+     border:solid #080E73 2px;
+    }
+    .container1 p{
+      margin: 10px;
+    }
+    </style>
+<body>
+<div class="header">
+      <img src="{% static 'css/img/logo.png'%}" alt="" style="float: left; size: initial;height: 70px; margin:-10px 0px 50px 0px">
+      <h3>Tima's bikes</h3>
+      <img src="{% static 'css/img/ike3.webp' %}" alt="" style="right: 80px;">
+      
+      
+</div>    
+
+<div class="navbar">
+  <a href="">Главная страница</a>
+  <div class="subnav">
+    <button class="subnavbtn">Запчасти<i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="{% url 'part1' %}">Колеса</a>
+      <a href="#head">Рама</a>
+      <a href="#foot">Разное</a>
+    </div>
+  </div> 
+  <div class="subnav">
+    <button class="subnavbtn">Велосипеды <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="{%  url 'bike1' %}">Горные велосипеды</a>
+      <a href="{%  url 'bike2' %}">Детские велосипеды</a>
+      <a href="{%  url 'bike3' %}">Скоростные велосипеды</a>
+      <a href="{%  url 'bike4' %}">BMX</a>
+    </div>
+  </div> 
+  
+  <a href="#head">Новости</a>
+  <a href="{% url 'about' %}">О нас</a>
+  <a href="{% url  'register' %}" style="float: right; " id="log">log in</a>
+  
+</div> 
+
+        
+       
+
+
+    
+    
+{% block content %}
+
+
+<div class="row" id="head">
+   
+  <div class="leftcolumn">
+    {% for post in posts %}
+    <div class="card">
+      <h2>{{  post.title   }} </h2>
+      <h5>{{post.date}}</h5>
+      <img src="{{ post.img.url }}" style="width: 90%;" alt="">
+      
+      <p>{{ post.text}}</p>
+      
+    </div>
+    {% endfor %}
+  </div>
+  <div class="rightcolumn">
+    <div class="card" id="about">
+      <h2>Часто задаваемые вопросы </h2>
+      <div class="fakeimg" style="height:100px;">Image</div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    </div>
+    <div class="card">
+      <h3>Popular Post</h3>
+      <div class="fakeimg"><p>Image</p></div>
+      <div class="fakeimg"><p>Image</p></div>
+      <div class="fakeimg"><p>Image</p></div>
+    </div>
+    <div class="card">
+      <h3>Follow Me</h3>
+      <p>Some text..</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer" id='foot'>
+  <h2>Our pages on</h2>
+  <div class="icon-bar">
+    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
+    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a> 
+    <a href="#" class="google"><i class="fa fa-google"></i></a> 
+    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+    <a href="#" class="youtube"><i class="fa fa-youtube"></i></a> 
+  </div>
+  
+</div>
+{% endblock %}
+    
+    
+    </body>
+    </html>

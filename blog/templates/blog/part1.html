@@ -1,0 +1,37 @@
+{% extends 'blog/index.html' %}
+{% load static %}
+
+  
+  {% block content %}
+
+    <div class="rightcolumn" style="margin-top: 25px;">
+        <div class="card" id="about">
+          <form action="{% url 'search' %}" method="GET">
+            <p><b>Search</b></p>
+            <input style="width: 60%;padding: 12px 20px;margin: 8px 0;box-sizing: border-box;" type="text" name="search" placeholder="search">
+            <input style="background-color: rgb(38, 28, 134); border: none;color: white;padding: 13px 22px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;" type="submit" value="search">
+           
+        </form>
+        
+        <form action="{% url 'sort' %}" method="GET">
+          <p><b>Sort</b></p>
+            <input style="background-color: rgb(38, 28, 134); border: none;color: white;padding: 13px 22px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;" type="submit" name='priceasc' value="Sort by price asc">
+            <input style="background-color: rgb(38, 28, 134); border: none;color: white;padding: 13px 22px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;" type="submit" name='count' value="Sort by Country">
+            <input style="background-color: rgb(38, 28, 134); border: none;color: white;padding: 13px 22px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;margin: 4px 2px;cursor: pointer;" type="submit" name='pricedesc' value="Sort by price desc">
+      </form>
+        </div>
+    </div>
+ 
+    <div class="container">
+      {% for part in parts %}
+        <div>
+            <a href="{% url 'part_detail' pk=part.pk %}"><img src="{{ part.img.url }}" style="justify-content: center; width: 300px; margin-top: 20px; " alt=""></a>
+            <p>Название:{{part.name}}</p>
+            <p>Цена:{{part.price}} тг</p>
+            
+        </div>
+        {% endfor %}
+        
+    </div>
+
+    {% endblock%}

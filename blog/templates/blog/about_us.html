@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bike site</title>
+    <link rel="icon" href="{% static 'css/img/log.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link href="http://fonts.cdnfonts.com/css/aquatico" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+ 
+<body>
+<div class="header">
+      <img src="{% static 'css/img/logo.png'%}" alt="" style="float: left; size: initial;height: 70px; margin:-10px 0px 50px 0px">
+      <h3>Tima's bikes</h3>
+      <img src="{% static 'css/img/ike3.webp' %}" alt="" style="right: 80px;">
+      
+      
+</div>    
+
+<div class="navbar">
+  <a href="">Главная страница</a>
+  <div class="subnav">
+    <button class="subnavbtn">Запчасти<i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="{% url 'part1' %}">Колеса</a>
+      <a href="#head">Рама</a>
+      <a href="#foot">Разное</a>
+    </div>
+  </div> 
+  <div class="subnav">
+    <button class="subnavbtn">Велосипеды <i class="fa fa-caret-down"></i></button>
+    <div class="subnav-content">
+      <a href="{%  url 'bike1' %}">Горные велосипеды</a>
+      <a href="{%  url 'bike2' %}">Детские велосипеды</a>
+      <a href="{%  url 'bike3' %}">Скоростные велосипеды</a>
+      <a href="{%  url 'bike4' %}">BMX</a>
+    </div>
+  </div> 
+  
+  <a href="#head">Новости</a>
+  <a href="#foot">О нас</a>
+  <a href="{% url  'register' %}" style="float: right; " id="log">log in</a>
+  
+</div> 
+
+        
+       
+<h2 style="text-align:center">Our Team</h2>
+<div class="row1">
+  <div class="column1">
+    <div class="card1">
+      <img src="{% static 'css/img/team2.jpg' %}" alt="Jane" style="width:100%">
+      <div class="container1">
+        <h2>Temirlan Khamza</h2>
+        <p class="title1">CEO & Founder</p>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>tima@example.com</p>
+        <p><button class="button1">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column1">
+    <div class="card1">
+      <img src="{% static 'css/img/team2.jpg' %}" alt="Mike" style="width:100%">
+      <div class="container1">
+        <h2>Tima</h2>
+        <p class="title1">Technical engineer</p>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>mike@example.com</p>
+        <p><button class="button1">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column1">
+    <div class="card1">
+      <img src="{% static 'css/img/team2.jpg' %}" alt="John" style="width:100%">
+      <div class="container1">
+        <h2>Tima</h2>
+        <p class="title1">Support</p>
+        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+        <p>john@example.com</p>
+        <p><button class="button1">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    
+    
+
+
+
+<div class="footer" id='foot'>
+  <h2>Our pages on</h2>
+  <div class="icon-bar">
+    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
+    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a> 
+    <a href="#" class="google"><i class="fa fa-google"></i></a> 
+    <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+    <a href="#" class="youtube"><i class="fa fa-youtube"></i></a> 
+  </div>
+  
+</div>
+
+    
+    
+    </body>
+    </html>
