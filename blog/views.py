@@ -1,10 +1,13 @@
 import re
+from django.contrib.auth import forms
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls.conf import path
 from django.utils import timezone
-
 import blog
 from .models import *
+from django.contrib.auth import login , logout
+
+from .form import UserRegister,Userloginform
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
@@ -44,20 +47,45 @@ def bike_detail(request, pk):
 def part_detail(request, pk):
     part = get_object_or_404(Parts, pk=pk)
     return render(request, 'blog/part_detail.html', {'part': part})
+    
+def user_logout(request):
+    logout(request)
+    return redirect('login')
+
+def user_login(request):
+    if request.method=='POST':
+        form=Userloginform(data=request.POST)
+        if form.is_valid():
+            user=form.get_user()
+            login(request,user)
+            
+            # messages.success(request,'Registered successufuly')
+            return redirect('index')
+        else:
+            form=Userloginform()
+
+    else:
+        form = Userloginform()
+    return render(request,'blog/login.html',{"form":form})
+
 
 def register(request):
     if request.method=='POST':
-        form=UserCreationForm(request.POST)
+        form=UserRegister(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request,'Registered successufuly')
-            # return redirect('login')
+            return redirect('login')
         else:
             messages.error(request,'Error')
     else:
-        form = UserCreationForm()
+        form = UserRegister()
      
     return render(request, 'blog/register.html',{'form':form})
+
+
+
+
 
 class Search(ListView):
     template_name='blog/search.html'
