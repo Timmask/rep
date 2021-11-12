@@ -6,11 +6,12 @@ from django.utils import timezone
 import blog
 from .models import *
 from django.contrib.auth import login , logout
-
+from django.contrib.auth.models import User
 from .form import UserRegister,Userloginform
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
+
 def void(request):
     return render(request,'blog/about_us.html',{})
 def part(request):
@@ -73,6 +74,7 @@ def register(request):
     if request.method=='POST':
         form=UserRegister(request.POST)
         if form.is_valid():
+            # form.email
             form.save()
             messages.success(request,'Registered successufuly')
             return redirect('login')
