@@ -11,14 +11,25 @@ from .form import UserRegister,Userloginform
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.views.generic import ListView, DetailView
+from django.http import HttpResponseRedirect, HttpResponseNotFound
+from django.core.mail import send_mail
+EMAIL_HOST_USER='bikesite@mail.ru'
 
 def void(request):
-    return render(request,'blog/about_us.html',{})
+    stuff=Stuff.objects.all()
+    return render(request,'blog/about_us.html',{'stuff':stuff})
 def part(request):
-    parts=Parts.objects.all()
+    parts=Parts.objects.filter(name__contains='wheel')
     return render(request, 'blog/part.html',{'parts':parts})
+def part2(request):
+    parts=Parts.objects.filter(name__contains='frame')
+    return render(request, 'blog/part1.html',{'parts':parts})
+def part3(request):
+    parts=Parts.objects.filter(name__contains='other')
+    return render(request, 'blog/part1.html',{'parts':parts})
+
 def index(request):
-    posts = Post.objects.filter(date__lte=timezone.now()).order_by('date')
+    posts = Post.objects.order_by('date')
     return render(request, 'blog/index.html', {'posts': posts})
 
 def bike1(request):
@@ -28,6 +39,7 @@ def bike1(request):
 def bike2(request):
     bikes=Bike.objects.filter(type__contains='kids')
     return render(request,'blog/bike2.html',{'bikes':bikes} )
+
 
 
 def bike3(request):
@@ -53,6 +65,18 @@ def user_logout(request):
     logout(request)
     return redirect('login')
 
+def cards(request,pk):
+    use=request.user
+    bike = get_object_or_404(Bike, pk=pk)
+    Card.objects.create(user=use,bike=bike)
+    
+    return redirect('index')
+
+def shopcard(request):
+    user=request.user
+    card=Card.objects.filter(user=user)
+    return render(request,'blog/korzina.html',{'card':card})
+
 def user_login(request):
     if request.method=='POST':
         form=Userloginform(data=request.POST)
@@ -60,7 +84,7 @@ def user_login(request):
             user=form.get_user()
             login(request,user)
             
-            # messages.success(request,'Registered successufuly')
+            
             return redirect('index')
         else:
             form=Userloginform()
@@ -69,15 +93,29 @@ def user_login(request):
         form = Userloginform()
     return render(request,'blog/login.html',{"form":form})
 
+def pay(request):
+
+    return render(request,'blog/pay.html',{})
+
+
 
 def register(request):
     if request.method=='POST':
         form=UserRegister(request.POST)
         if form.is_valid():
-            # form.email
-            form.save()
-            messages.success(request,'Registered successufuly')
-            return redirect('login')
+            
+            user=form.save()
+            col=send_mail(
+               'Tima & Aizh bike site' ,
+               'Добрый день! \n Вы успешно зарегистрированы в системе BikeSite.kz! Начните покупку с нами! \n С уважением, \nКоманда Bikesite.kz',
+                'bikesite@mail.ru',
+                [str(user.email)],
+                fail_silently=True 
+            )
+            print("col:",col)
+            login(request,user)
+            
+            return redirect('index')
         else:
             messages.error(request,'Error')
     else:

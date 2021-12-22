@@ -74,8 +74,11 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django',
+        'USER':'user1',
+        'PASSWORD':'password',
+        'HOST':'localhost'
     }
 }
 
@@ -122,3 +125,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 # Path where media is stored
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
+EMAIL_HOST='smtp.mail.ru'
+EMAIL_PORT=465
+EMAIL_HOST_USER='bikesite@mail.ru'
+EMAIL_HOST_PASSWORD='iZ0e1R34mfZAxsx12tNU'
+EMAIL_USE_TLS=False
+EMAIL_USE_SSL=True

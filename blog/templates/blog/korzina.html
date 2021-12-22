@@ -1,0 +1,28 @@
+{% extends 'blog/index.html' %}
+{% load static %}
+
+  
+  {% block content %}
+
+    
+ 
+    <div class="container1">
+      {% for car in card %}
+        <div>
+            <a href="{% url 'bike_detail' pk=car.bike.pk %}"><img src="{{ car.bike.img.url }}" style="justify-content: center; width: 300px; margin-top: 10px; " alt=""></a>
+            <p>Название:{{ car.bike.name}}</p>
+            <p>Цена:{{ car.bike.price}} тг</p>
+        </div>
+        {% endfor %}
+        
+    </div>
+
+
+    <div class="rightcolumn">
+
+        <div style="background-color:#080E73; border-radius:10px;width:max-content;padding: 10px; position: relative; bottom: 450px;">
+            <a href="{% url 'pay' %}" style="text-decoration: none; font-size: 20px;  color: white;" >Buy all</a>
+          </div> 
+    </div>
+
+    {% endblock%}

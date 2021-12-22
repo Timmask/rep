@@ -5,17 +5,52 @@
     
   {% block content %}
 
-
-  <div class="leftcolumn" style="width: 100%;">
-    <div class="card">
-        <h2>{{bike.name}}</h2>
+<div class="row" id="head" style="border:solid 1px #7277D8 ;border-radius: 20px;">
+  <div class="leftcolumn" style="width: 50%; margin-bottom: 100px; background-color: white; border: none;">
+    <div class="card" style="border: none;">
+        
         <img src="{{ bike.img.url }}" style="justify-content: center; width:100%; margin-top: 20px; " alt="">
       
-        <p>price: {{bike.price}}</p>
-        <p>{{bike.description|linebreaksbr}}</p>
+        
     </div>
-     </div>
-
+  </div>
+  <div class="rightcolumn" style="width: 50%;  border: none;">
+    <div class="card" id="about" style="border: none; ">
+      <h2>{{bike.name}}</h2>
+      <h3> {{bike.price}}тг</h3>
+      <p>{{bike.description|linebreaksbr}}</p>
+      <div style="display: flex;width: 15%; justify-content: space-between;">
+        {% if request.user.is_authenticated %}
+        <div style="background-color:#080E73; border-radius:10px; padding: 0;width:min-content ; margin-right: 20px; ">
+        <a href="{% url 'cards' pk=bike.pk %}" >
+          <img src="{% static 'css/img/shopping-cart.png' %}" alt="" style="width: 30px; margin: 5px;">
+        </a>
+        </div>
+        {% else %}
+        <div style="background-color:#080E73; border-radius:10px; padding: 0;width:min-content ; margin-right: 20px; ">
+          <a href="#" onclick="document.getElementById('id01').style.display='block'" >
+            <img src="{% static 'css/img/shopping-cart.png' %}" alt="" style="width: 30px; margin: 5px;">
+          </a>
+          </div>
+          
+        </div>
+        {% endif %}
+        <div style="background-color:#080E73; border-radius:10px; padding: 0;width:min-content;padding: 10px;  ">
+          <a href="{% url 'pay' %}" style="text-decoration: none; font-size: 20px;  color: white;" >Buy</a>
+        </div>
+      </div>
+      
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content">
+          <div class="w3-container">
+            <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+            <p>to use the cart you must register</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
      
-     {% endblock%}
+  {% endblock%}
  

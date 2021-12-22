@@ -51,47 +51,29 @@
         
        
 <h2 style="text-align:center">Our Team</h2>
+
 <div class="row1">
+  {% for i in stuff|slice:":3" %}
   <div class="column1">
     <div class="card1">
-      <img src="{% static 'css/img/team2.jpg' %}" alt="Jane" style="width:100%">
+      <img src="{{ i.img.url }}" alt="img" style="width:100%">
       <div class="container1">
-        <h2>Temirlan Khamza</h2>
-        <p class="title1">CEO & Founder</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>tima@example.com</p>
+        <h2>{{ i.fullname }}</h2>
+        <p class="title1">{{ i.role }}</p>
+        <p>{{ i.description}}</p>
+        <p>{{i.email }}</p>
         <p><button class="button1">Contact</button></p>
       </div>
     </div>
   </div>
+  {% endfor %}
+  
 
-  <div class="column1">
-    <div class="card1">
-      <img src="{% static 'css/img/team2.jpg' %}" alt="Mike" style="width:100%">
-      <div class="container1">
-        <h2>Tima</h2>
-        <p class="title1">Technical engineer</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>mike@example.com</p>
-        <p><button class="button1">Contact</button></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="column1">
-    <div class="card1">
-      <img src="{% static 'css/img/team2.jpg' %}" alt="John" style="width:100%">
-      <div class="container1">
-        <h2>Tima</h2>
-        <p class="title1">Support</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>john@example.com</p>
-        <p><button class="button1">Contact</button></p>
-      </div>
-    </div>
-  </div>
 </div>
+<section style="height: 90vh;">
+  <div id="map" style=" height: 500px;width: 100%; "></div>
 
+</section>
 
     
     
@@ -111,6 +93,26 @@
 </div>
 
     
-    
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPnxeQ6m6d1O9AxOSNBdNqvTYRLXmOFAs&callback=initMap&libraries=&v=weekly"
+async
+>
+
+</script>
+<script>
+function initMap() {
+  
+  const uluru = { lat: 43.2346028, lng: 76.9095651 };
+  
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 12,
+    center: uluru,
+  });
+ 
+  const marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+  });
+}</script>
     </body>
     </html>

@@ -128,10 +128,7 @@ body {
     z-index: 2;
     right: 100px;
 }
-.header img:hover {
-  z-index: 1;
-  
-}
+
 .header img{
 
   align-items: center;
@@ -139,7 +136,7 @@ body {
   height: 300px;
   position: relative;
   
-  z-index: 3;
+  z-index: 0;
 }
 
 
@@ -218,7 +215,17 @@ body {
 
 
 
+.korzina{
+  background-color:#080E73 ;
 
+}
+.korzina a{
+  text-decoration: none;
+  
+}
+.korzina img{
+  width: 50px;
+}
 .icon-bar {
   position: absolute;
   left: 40%;

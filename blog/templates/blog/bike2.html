@@ -25,7 +25,7 @@
     <div class="container1">
       {% for bike in bikes %}
         <div>
-            <a href="{% url 'bike_detail' pk=bike.pk %}"><img src="{{ bike.img.url }}" style="justify-content: center; width: 300px; margin-top: 10px; " alt=""></a>
+            <a href="{% url 'bike_detail' pk=bike.pk %}"><img src="{{ bike.img.url }}" style="justify-content: center; width: 300px; margin-top: 10px; height: 200px; " alt=""></a>
             <p>Название:{{bike.name}}</p>
             <p>Цена:{{bike.price}} тг</p>
         </div>

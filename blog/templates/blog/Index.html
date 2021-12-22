@@ -8,19 +8,18 @@
     <title>Bike site</title>
     <link rel="icon" href="{% static 'css/img/log.png' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="{% static 'http://fonts.cdnfonts.com/css/aquatico' %}" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/aquatico" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="jquery.js"></script>
-      <script type="text/javascript">
-     window.onload = function() 
-    {
-        //display loader on page load 
-        $('.loader').fadeOut().delay(1000);
-    }
-      </script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   
   </head>
   <style>
     @import url('http://fonts.cdnfonts.com/css/aquatico');
+
+    
+.mySlides {display:none;}
+
   .loader {
             position: fixed;
             left: 0px;
@@ -67,14 +66,21 @@
     }
     </style>
 <body>
-<!--   
-<div class="loader" ><img src="https://c.tenor.com/I6kN-6X7nhAAAAAj/loading-buffering.gif"></div> -->
 
 <div class="header">
       <img src="{% static 'css/img/logo.png'%}" alt="" style="float: left; size: initial;height: 70px; margin:-10px 0px 50px 0px">
       <h3 style="font-family: 'Aquatico', sans-serif;">Tima's bikes</h3>
-      <img src="{% static 'css/img/ike3.webp' %}" alt="" style="right: 80px;">
+
+     
+      <div class="w3-content w3-display-container">
+        <img class="mySlides" src="{% static 'css/img/ike3.webp' %}" alt="" style="left: 200px;">
+        <img class="mySlides" src="{% static 'css/img/davv.png' %}" alt="" style="left: 200px;">
+        <img class="mySlides" src="{% static 'css/img/pure.png' %}" alt="" style="left: 200px;">
+        <img class="mySlides"src="{% static 'css/img/purepn.png' %}" alt="" style="left: 200px;">
       
+        <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+      </div>
       
 </div>    
 
@@ -84,8 +90,8 @@
     <button class="subnavbtn">Запчасти<i class="fa fa-caret-down"></i></button>
     <div class="subnav-content">
       <a href="{% url 'part1' %}">Колеса</a>
-      <a href="#head">Рама</a>
-      <a href="#foot">Разное</a>
+      <a href="{% url 'part2' %}">Рама</a>
+      <a href="{% url 'part3' %}">Разное</a>
     </div>
   </div> 
   <div class="subnav">
@@ -99,10 +105,12 @@
   </div> 
   
   <a href="#head">Новости</a>
-  {% if request.user.is_authenticated %}
-  <a href="{% url 'logout' %}">log out</a>
-  {% else %}
   <a href="{% url 'about' %}">О нас</a>
+  {% if request.user.is_authenticated %}
+  <a href="{% url 'card' %}">Корзина</a>
+  <a href="{% url 'logout' %}" style="float: right;" >log out</a>
+  {% else %}
+  
   <a href="{% url  'register' %}" style="float: right; " id="log">log in</a>
   {% endif %}
 </div> 
@@ -130,26 +138,33 @@
     </div>
     {% endfor %}
   </div>
+
   <div class="rightcolumn">
-    <div class="card" id="about">
-      <h2>Часто задаваемые вопросы </h2>
-      <div class="fakeimg" style="height:100px;">Image</div>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-    </div>
-    <div class="card">
-      <h3>Popular Post</h3>
-      <div class="fakeimg"><p>Image</p></div>
-      <div class="fakeimg"><p>Image</p></div>
-      <div class="fakeimg"><p>Image</p></div>
-    </div>
-    <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
+      <div class="card" id="about">
+        <h2>Часто задаваемые вопросы </h2>
+        <div class="fakeimg" style="height:100px;">Image</div>
+        <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+      </div>
+
+      <div class="card">
+        <h3>Popular Post</h3>
+        <div class="fakeimg"><p>Image</p></div>
+        <div class="fakeimg"><p>Image</p></div>
+        <div class="fakeimg"><p>Image</p></div>
+      </div>
+      
+      <div class="card">
+        <h3>Follow Me</h3>
+        <p>Some text..</p>
+      </div>
+
   </div>
+
 </div>
 
-<div class="footer" id='foot'>
+{% endblock %}
+
+<div class="footer" id='foot' style="background-color: #7277D8;">
   <h2>Our pages on</h2>
   <div class="icon-bar">
     <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
@@ -160,8 +175,28 @@
   </div>
   
 </div>
-{% endblock %}
+
     
-    
+    <script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+<script type="text/javascript" src="jquery.js"></script>
+      
     </body>
     </html>

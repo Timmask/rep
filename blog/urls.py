@@ -12,6 +12,8 @@ urlpatterns = [
     path('bike3/',views.bike3,name='bike3'),
     path('bike4/',views.bike4,name='bike4'),
     path('part1/',views.part1,name='part1'),
+     path('part2/', views.part2,name='part2'),
+    path('part3/', views.part3,name='part3'),
     path('bike/<int:pk>/', views.bike_detail, name='bike_detail'),
     path('part/<int:pk>/', views.part_detail, name='part_detail'),
     path('login/',views.user_login,name='login'),
@@ -20,6 +22,9 @@ urlpatterns = [
     path('part/', views.part,name='part'),
     path('search/', views.Search.as_view(), name='search'),
     path('sort/',views.Sort.as_view(),name='sort'),
+    path('cards/<int:pk>/',views.cards,name='cards'),
+    path('card/',views.shopcard,name='card'),
+    path('pay/',views.pay,name='pay'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

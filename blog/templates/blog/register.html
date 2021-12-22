@@ -66,11 +66,11 @@
         <div class="reg">
           <form method="post">
             {% csrf_token %}
-            {{form.as_p}}
+            {{ form.as_p }}
             <input type = "submit" value = "Register">
           </form> 
         </div>
-        
+        <a href="{% url 'login' %}" style="margin: 0 50%;; font-size:large ">uzhe est accaunt ?</a>
        
 
 </body>
